@@ -40,3 +40,10 @@ cd ghclerktest && code .
 
 ![](images/getstarted/getstarted.003.jpeg)
 
+
+
+## Deploying
+
+If you push your new repository to Github the Github Actions system will be configured to build and push any `clj` namespaces as a clerk notebook. However, you do need to give the Github Actions system authorization to use Github Pages.
+
+![](images/ghactions.png)
