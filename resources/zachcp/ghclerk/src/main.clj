@@ -14,6 +14,14 @@
              [javax.imageio ImageIO]))
   
 
+(comment  
+  
+   ;; start Clerk's built-in webserver on the default port 7777, opening the browser when done
+  (clerk/serve! {:browse? true})
+  ;; either call `clerk/show!` explicitly to show a given notebook.
+  (clerk/show! "src/main.clj")
+  )
+
 
 ;; ## SPARQL through the lens of Wikidata
 
