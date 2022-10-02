@@ -1,29 +1,8 @@
 (ns build
-  (:refer-clojure :exclude [test])
-  (:require [clojure.tools.build.api :as b] ; for b/git-count-revs
-            [org.corfield.build :as bb]))
+  (:require  [nextjournal.clerk :as clerk]
+             [babashka.fs :as fs]))
 
-(def lib '{{group/id}}/{{artifact/id}})
-(def version "{{version}}")
-#_ ; alternatively, use MAJOR.MINOR.COMMITS:
-(def version (format "1.0.%s" (b/git-count-revs nil)))
-
-(defn test "Run the tests." [opts]
-  (bb/run-tests opts))
-
-(defn ci "Run the CI pipeline of tests (and build the JAR)." [opts]
-  (-> opts
-      (assoc :lib lib :version version)
-      (bb/run-tests)
-      (bb/clean)
-      (bb/jar)))
-
-(defn install "Install the JAR locally." [opts]
-  (-> opts
-      (assoc :lib lib :version version)
-      (bb/install)))
-
-(defn deploy "Deploy the JAR to Clojars." [opts]
-  (-> opts
-      (assoc :lib lib :version version)
-      (bb/deploy)))
+;; default is to build all of the clj files in the namespace
+;; output will be a single fully-compiled file `public/build/index.html`
+(let [notebook-paths (map str (fs/glob "src" "**{.clj,cljc}"))]
+  (clerk/build-static-app! {:paths notebook-paths}))
