@@ -19,7 +19,7 @@
    ;; start Clerk's built-in webserver on the default port 7777, opening the browser when done
   (clerk/serve! {:browse? true})
   ;; either call `clerk/show!` explicitly to show a given notebook.
-  (clerk/show! "src/main.clj")
+  (clerk/show! "src/{{top/ns}}/{{main/ns}}.clj")
   )
 
 
