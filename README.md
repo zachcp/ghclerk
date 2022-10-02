@@ -1,10 +1,33 @@
 # zachcp/ghclerk
 
-FIXME: my new template.
+A template to get started with clojure. Features building with `clerk` and deploying of static sites with `GitHub`.
 
 ## Usage
 
-FIXME: write usage documentation!
+The easiest way to use this template is if you have clojure and neil installed.
+
+```sh
+# install system dependencies and optional editor
+brew install clojure neil
+brew install --cask visual-studio-code
+
+# create a new repo. try: neil new help
+#
+# for a new repo called `ghclerktest`
+neil new zachcp/ghclerk ghclerktest \
+    --local/root "/Users/zcpowers/Documents/Projects/ghclerktemplate" 
+
+# open editor in your new templated repo
+cd ghclerktest && code .
+```
+
+
+## Suggested Usage
+
+If you have Calva installed
+If VS Code is installed, 
+
+
 
 This is a template project for use with [deps-new](https://github.com/seancorfield/deps-new).
 As originally generated, it will produce a new library project when run:
