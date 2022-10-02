@@ -11,20 +11,30 @@ The easiest way to use this template is if you have clojure and neil installed.
 brew install clojure neil
 brew install --cask visual-studio-code
 
-# create a new repo. try: neil new help
-#
+# create a new repo. try: `neil new help`
 # for a new repo called `ghclerktest`
 neil new zachcp/ghclerk ghclerktest \
     --local/root "/Users/zcpowers/Documents/Projects/ghclerktemplate" 
 
 # open editor in your new templated repo
 cd ghclerktest && code .
+
+# follow the suggestions above/below to:
+#  1. install VScode/Calva 
+#  2. start and "jack-in" to a Clojure REPL
+#  3. send code to the REPL and watch in evaluate
 ```
 
 
-## Suggested Usage
+### VSCode + Calva
 
 ![](images/getstarted/getstarted.001.jpeg)
+
+### Starting the REPL
+
 ![](images/getstarted/getstarted.002.jpeg)
+
+### Geting Started
+
 ![](images/getstarted/getstarted.003.jpeg)
 
