@@ -8,10 +8,11 @@ This template is intended to be used for data analysis projects with will
 be interpreted and built by [clerk](https://github.com/nextjournal/clerk).
 
 
-## Builds
 
-- Target GH Actions
-- Use [Setup Clojure](https://github.com/marketplace/actions/setup-clojure)
-- require GH key for posting
-- see [here](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
-- and [here](https://github.com/marketplace/actions/upload-github-pages-artifact)
+## Features.
+
+- Ready to use. Add/update GitHub Actions Template that will build and display
+- Open the single `clj` file in the `src` directory and begin evaluating the namespace.
+- GitHub Actions workflow will build and deploy your notebook.
+- e.g. if you create a github repo at `https://github.com/<username>/<repo>`, it will build a site viewable at `https://<username>.github.io/<repo>`
+

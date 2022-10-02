@@ -1,6 +1,5 @@
 ^{:nextjournal.clerk/visibility :hide-ns
   :nextjournal.clerk/toc true}
-
 (ns {{top/ns}}.{{main/ns}}
    (:require
     [clojure.java.io :as io]
@@ -23,38 +22,13 @@
   )
 
 
-;; ## SPARQL through the lens of Wikidata
-
-;; Wikidata uses a
-;; [TripleStore](https://en.wikipedia.org/wiki/Triplestore) to encode
-;; their data. This means that everything in the database is stored as
-;; a logical assertion in the form of a (_subject_, _predicate_,
-;; _object_) triple. In practice, triples look something like 
-;; `("Paul Otlet" "born in year" "1868")`.
-
-;; An extremely simple Wikidata SPARQL query might look like this:
-
-;; ```sparql
-;; SELECT * WHERE {
-;;   wd:Q451 ?p ?o
-;; }
-;; ```
-
-;; We would read this as "give me all (_predicate_, _object_) pairs
-;; for the _subject_ (which they call _entity_) with Wikidata ID
-;; `wd:Q451`". Note that entities in Wikidata have numerical IDs like
-;; this because they refer to language neutral _concepts_ rather than
-;; to _words_ in a given language. Happily, every entity has labels
-;; and descriptions associated with it in a variety of languages.
-
-;; To translate this query into our Clojure DSL and execute it, we use
-;; a Datomic-like datalog syntax and convert all ID literals from
-;; their SPARQL shape (like `wd:Q451`) to Clojure namespaced keywords
-;; (like `:wd/Q451`), which gives us:
-
-(query `{:select *
-         :where [[:wd/Q451 ?p ?o]]})
-
+;; ## Interactive Notebook Using Clerk
+;;
+;;  - Comment strings are interpreted as markdown. 
+;;  - clojure code blocks can be evaluated to the REPL or viewed by the CLERK webserver.
+;;  - clerk is highly extensible. see the [book-of-clerk](https://github.clerk.garden/nextjournal/book-of-clerk/commit/d74362039690a4505f15a61112cab7da0615e2b8/).
+;;
+;; 
 
 
 ;; ### 🧩 Clojure Data
@@ -97,6 +71,7 @@
 ;; Clerk also has built-in support for Plotly's low-ceremony plotting:
 (clerk/plotly {:data [{:z [[1 2 3] [3 2 1]] :type "surface"}]})
 
+
 ;; ### 🗺 Vega Lite
 
 ;; But Clerk also has Vega Lite for those who prefer that grammar.
@@ -106,19 +81,6 @@
                                             :key "id" :fields ["rate"]}}]
            :projection {:type "albersUsa"} :mark "geoshape" :encoding {:color {:field "rate" :type "quantitative"}}})
 
-
-;; ### 🎼 Code
-
-;; The code viewer uses
-;; [clojure-mode](https://nextjournal.github.io/clojure-mode/) for
-;; syntax highlighting.
-(clerk/code (macroexpand '(when test
-                            expression-1
-                            expression-2)))
-
-(clerk/code '(ns foo "A great ns" (:require [clojure.string :as str])))
-
-(clerk/code "(defn my-fn\n  \"This is a Doc String\"\n  [args]\n  42)")
 
 ;; ### 🏞 Images
 
@@ -138,21 +100,14 @@
 (ImageIO/read (URL. "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/The_Sower.jpg/1510px-The_Sower.jpg"))
 
 
-;; ### 🔠 Grid Layouts
 
-;; Layouts can be composed via `row`s and `col`s
+;; ### Wikidata Example
 ;;
-;; Passing `:width`, `:height` or any other style attributes to
-;; `::clerk/opts` will assign them on the row or col that contains
-;; your items. You can use this to size your containers accordingly.
+;; Use the [mundaneum](https://github.com/jackrusher/mundaneum) Clojure DSL
+;; to query wikidata.  Mundaneum uses a Datomic-like datalog syntax to 
+;; convert all ID literals from their SPARQL shape (like `wd:Q451`) to 
+;; Clojure namespaced keywords (like `:wd/Q451`), which gives us:
 
-^{::clerk/visibility {:code :hide :result :hide}}
-(def image-1 (ImageIO/read (URL. "https://etc.usf.edu/clipart/62300/62370/62370_letter-a_lg.gif")))
-
-^{::clerk/visibility {:code :hide :result :hide}}
-(def image-2 (ImageIO/read (URL. "https://etc.usf.edu/clipart/72700/72783/72783_floral_b_lg.gif")))
-
-^{::clerk/visibility {:code :hide :result :hide}}
-(def image-3 (ImageIO/read (URL. "https://etc.usf.edu/clipart/72700/72787/72787_floral_c_lg.gif")))
-
+(query `{:select *
+         :where [[:wd/Q451 ?p ?o]]})
 
