@@ -13,8 +13,10 @@ brew install --cask visual-studio-code
 
 # create a new repo. try: `neil new help`
 # for a new repo called `ghclerktest`
-neil new zachcp/ghclerk ghclerktest \
-    --local/root "/Users/zcpowers/Documents/Projects/ghclerktemplate" 
+neil new  zachcp/ghclerk ghclerktest \
+    --url https://github.com/zachcp/ghclerk \
+    --latest-sha
+
 
 # open editor in your new templated repo
 cd ghclerktest && code .
