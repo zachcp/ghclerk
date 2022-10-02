@@ -5,6 +5,4 @@
  :template-fn zachcp.ghclerk/template-fn
  :transform
  [["src" "src/{{top/file}}"
-   {"main.clj" "{{main/file}}.clj"}]
-  ["test" "test/{{top/file}}"
-   {"main_test.clj" "{{main/file}}_test.clj"}]]}
+   {"main.clj" "{{main/file}}.clj"}]]}
